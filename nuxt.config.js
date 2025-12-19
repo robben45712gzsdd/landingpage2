@@ -1,9 +1,9 @@
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: "NEXGAME STUDIO - Game Studio Hàng Đầu",
+    title: "Voodoo - Entertain the World",
     htmlAttrs: {
-      lang: "vi",
+      lang: "en",
     },
     meta: [
       { charset: "utf-8" },
@@ -11,7 +11,7 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: "NEXGAME STUDIO - Khám phá thế giới game đỉnh cao với đồ họa tuyệt đẹp và gameplay hấp dẫn",
+        content: "Voodoo - Entertain the world with iconic apps and games",
       },
     ],
     link: [
@@ -31,7 +31,7 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [],
+  css: [ '~/assets/styles/main.css'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [],
