@@ -1,6 +1,6 @@
 <template>
   <div id="smooth-wrapper" class="relative flex flex-col bg-[#111118] w-full h-screen">
-    <div id="smooth-content" class="flex-1 overflow-x-hidden overflow-y-auto snap-y" style="scroll-snap-type: y proximity; scroll-behavior: smooth;">
+    <div id="smooth-content" class="flex-1 overflow-x-hidden overflow-y-auto snap-mandatory snap-y" style="scroll-behavior: smooth; scroll-padding-top: 80px;">
       <!-- Clean Background -->
       <div class="fixed inset-0 bg-[#111118] pointer-events-none"></div>
 
@@ -9,7 +9,7 @@
         <nav class="flex justify-between items-center mx-auto px-6 md:px-12 py-5 max-w-7xl">
           <a href="#home" class="group">
             <h1 class="font-black text-white text-2xl lg:text-3xl tracking-tight">
-              NEX<span class="text-purple-500">GAME</span>
+              NEK<span class="text-purple-500">GAME</span>
             </h1>
           </a>
 
@@ -48,7 +48,7 @@
       </header>
 
       <!-- HERO SECTION - Game Slider -->
-      <section id="home" class="relative h-screen min-h-screen overflow-hidden snap-start" data-aos="fade-up">
+      <section id="home" class="relative h-screen min-h-screen overflow-hidden snap-start" data-aos="fade-up" @touchstart="handleTouchStart" @touchend="handleTouchEnd">
         <!-- Background - Lighter with game image -->
         <div class="absolute inset-0 hero-bg" data-speed="0.5">
           <img :src="featuredGames[currentSlide].image" :alt="featuredGames[currentSlide].title"
@@ -60,7 +60,7 @@
 
         <!-- Slider Content -->
         <div class="z-10 relative flex items-center gap-8 min-h-screen snap-start" data-aos="fade-up">
-          <div class="mx-auto px-6 md:px-12 w-full max-w-7xl">
+          <div class="mx-auto px-6 md:px-12 pt-8 w-full max-w-7xl">
             <div class="items-center gap-8 grid grid-cols-1 lg:grid-cols-2">
               <!-- Left: Game Info -->
               <div class="space-y-6 hero-content" data-aos="fade-right" data-aos-delay="100">
@@ -149,7 +149,14 @@
             </div>
 
             <!-- Slider Controls -->
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center mt-8">
+              <!-- Left Arrow -->
+              <button @click="prevSlide" class="hidden md:flex justify-center items-center bg-white/10 hover:bg-white/20 p-3 rounded-full hover:scale-110 transition-all duration-300">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
               <!-- Dots -->
               <div class="flex items-center gap-3">
                 <button v-for="(game, index) in featuredGames" :key="index" @click="goToSlide(index)"
@@ -163,7 +170,12 @@
                 </button>
               </div>
 
-          
+              <!-- Right Arrow -->
+              <button @click="nextSlide" class="hidden md:flex justify-center items-center bg-white/10 hover:bg-white/20 p-3 rounded-full hover:scale-110 transition-all duration-300">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
 
 
@@ -302,7 +314,7 @@
               </h2>
 
               <p class="text-white/80 text-lg leading-relaxed">
-                <strong class="text-purple-400">NEXGAME STUDIO</strong> là một trong những
+                <strong class="text-purple-400">NEKGAME STUDIO</strong> là một trong những
                 studio game hàng đầu, chuyên phát triển các tựa game mobile chất lượng cao
                 với đồ họa tuyệt đẹp và gameplay độc đáo.
               </p>
@@ -444,7 +456,7 @@
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                 </svg>
               </div>
-              <p class="mb-6 text-white/80 leading-relaxed">"Game của NEXGAME thực sự tuyệt vời! Đồ họa sắc nét, gameplay mượt mà và cộng đồng rất thân thiện."</p>
+              <p class="mb-6 text-white/80 leading-relaxed">"Game của NEKGAME thực sự tuyệt vời! Đồ họa sắc nét, gameplay mượt mà và cộng đồng rất thân thiện."</p>
               <div class="flex items-center gap-3">
                 <img src="https://i.pravatar.cc/150?img=1" alt="User" class="rounded-full w-12 h-12">
                 <div>
@@ -461,7 +473,7 @@
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                 </svg>
               </div>
-              <p class="mb-6 text-white/80 leading-relaxed">"Tôi đã chơi nhiều game mobile, nhưng các tựa game của NEXGAME vẫn là tốt nhất. Rất đáng giá!"</p>
+              <p class="mb-6 text-white/80 leading-relaxed">"Tôi đã chơi nhiều game mobile, nhưng các tựa game của NEKGAME vẫn là tốt nhất. Rất đáng giá!"</p>
               <div class="flex items-center gap-3">
                 <img src="https://i.pravatar.cc/150?img=2" alt="User" class="rounded-full w-12 h-12">
                 <div>
@@ -530,7 +542,7 @@
             <div class="md:col-span-2">
               <h3
                 class="bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 mb-4 font-black text-transparent text-2xl">
-                NEXGAME STUDIO
+                NEKGAME STUDIO
               </h3>
               <p class="mb-4 text-white/60">
                 Tạo ra những trải nghiệm game tuyệt vời cho hàng triệu người chơi trên toàn thế giới.
@@ -590,7 +602,7 @@
           <!-- Copyright -->
           <div class="pt-8 border-purple-500/20 border-t text-center">
             <p class="text-white/40">
-              &copy; 2025 NEXGAME STUDIO. All rights reserved.
+              &copy; 2025 NEKGAME STUDIO. All rights reserved.
             </p>
           </div>
         </div>
@@ -606,6 +618,8 @@ export default {
       mobileMenuOpen: false,
       currentSlide: 0,
       slideInterval: null,
+      touchStartX: 0,
+      touchEndX: 0,
       featuredGames: [
         {
           title: "Battle Royale Elite",
@@ -742,16 +756,39 @@ export default {
       this.currentSlide = index;
       this.stopAutoSlide();
       this.startAutoSlide();
+    },
+    handleTouchStart(e) {
+      this.touchStartX = e.changedTouches[0].screenX;
+    },
+    handleTouchEnd(e) {
+      this.touchEndX = e.changedTouches[0].screenX;
+      this.handleSwipe();
+    },
+    handleSwipe() {
+      const swipeThreshold = 50;
+      const diff = this.touchStartX - this.touchEndX;
+      
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          // Vuốt từ phải sang trái - next slide
+          this.nextSlide();
+        } else {
+          // Vuốt từ trái sang phải - prev slide
+          this.prevSlide();
+        }
+        this.stopAutoSlide();
+        this.startAutoSlide();
+      }
     }
   },
   head() {
     return {
-      title: "NEXGAME STUDIO - Game Studio Hàng Đầu",
+      title: "NEKGAME STUDIO - Game Studio Hàng Đầu",
       meta: [
         {
           hid: "description",
           name: "description",
-          content: "NEXGAME STUDIO - Khám phá thế giới game đỉnh cao với đồ họa tuyệt đẹp và gameplay hấp dẫn"
+          content: "NEKGAME STUDIO - Khám phá thế giới game đỉnh cao với đồ họa tuyệt đẹp và gameplay hấp dẫn"
         }
       ]
     };
@@ -779,19 +816,23 @@ html {
   overflow-y: auto;
   overflow-x: hidden;
   width: 100%;
-  will-change: transform;
-  scroll-snap-type: y proximity;
+  scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Snap sections from about onwards */
-#about,
-#download,
-.testimonials-section,
-.stats-section,
+/* Snap all sections */
+section,
 footer {
   scroll-snap-align: start;
   scroll-snap-stop: always;
+}
+
+/* Smooth transitions for all snap sections */
+section[data-aos],
+footer[data-aos] {
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* Hero section styles */
@@ -827,6 +868,18 @@ footer {
 /* Smooth transitions */
 * {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced smooth scroll behavior */
+html, body {
+  scroll-behavior: smooth;
+}
+
+/* Reduce motion for animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 /* Focus states */
